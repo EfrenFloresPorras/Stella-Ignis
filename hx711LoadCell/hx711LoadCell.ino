@@ -1,4 +1,4 @@
-#include <HX711_ADC.h> // need to install 
+#include <HX711_ADC.h> // need to install from Arduino Library
 #include <Wire.h>
 
 HX711_ADC LoadCell(6, 7); // parameters: dt pin 6, sck pin 7;
@@ -6,8 +6,10 @@ unsigned long t = 0;
 
 void setup() 
 {
-  Serial.begin(57600); 
+  Serial.begin(57600); // Serial Monitor frequency used
   LoadCell.begin(); // start connection to HX711
+  Serial.println("STELLA IGNIS");
+  Serial.println("HX711 LoadCell Program");
   LoadCell.start(2000); // load cells gets 2000ms of time to stabilize
   LoadCell.setCalFactor(1000); // calibration factor for load cell => dependent on your individual setup
 }
