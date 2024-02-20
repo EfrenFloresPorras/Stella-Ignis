@@ -1,3 +1,13 @@
+/*
+
+Propiedad de STELLA IGNIS
+By Efren Flores y Emiliano Arias
+
+Resumen de código: El código propiamente es una edición preliminar (v.1.0.0). 
+Esta hecho para que unicamente se reciba en la terminal los valores de fuerza aplicada y se pueda utilizar con el siguiente código "csv_pruebas.py"
+*/
+
+
 #include <HX711_ADC.h> // need to install from Arduino Library
 #include <Wire.h>
 
@@ -8,8 +18,6 @@ void setup()
 {
   Serial.begin(57600); // Serial Monitor frequency used
   LoadCell.begin(); // start connection to HX711
-  Serial.println("STELLA IGNIS");
-  Serial.println("HX711 LoadCell Program");
   LoadCell.start(2000); // load cells gets 2000ms of time to stabilize
   LoadCell.setCalFactor(1000); // calibration factor for load cell => dependent on your individual setup
 }
@@ -26,7 +34,6 @@ void loop() {
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
-      Serial.print("Weight[g]: ");
       Serial.println(i);
       newDataReady = 0;
       t = millis();
