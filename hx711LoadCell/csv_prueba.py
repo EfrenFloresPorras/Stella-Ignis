@@ -9,18 +9,18 @@ ser = serial.Serial('COM3', baudrate=57600)  # Reemplaza 'COMX' con el puerto se
 x_data, y_data = [], []
 
 # Configura la figura y los ejes
-plt.ion()
+plt.ion()  # Habilita el modo interactivo para actualizar el gráfico en tiempo real
 fig, ax = plt.subplots()
 line, = ax.plot(x_data, y_data)
 
 # Abre el archivo CSV para escribir los datos
 with open('datos.csv', 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(['Número', 'Valor de Fuerza'])
+    csvwriter.writerow(['numero', 'valor de fuerza'])
 
     # Configura el bucle principal
-    while True:
-        try:
+    try:
+        while True:
             # Lee el valor de fuerza desde el puerto serial
             force = float(ser.readline().decode('utf-8').rstrip())
 
@@ -43,8 +43,8 @@ with open('datos.csv', 'w', newline='') as csvfile:
             plt.draw()
             plt.pause(0.01)
 
-        except KeyboardInterrupt:
-            break
+    except KeyboardInterrupt:
+        pass  # Maneja la interrupción de teclado para salir del bucle
 
 # Cierra el puerto serial
 ser.close()
