@@ -3,7 +3,7 @@ import csv
 import matplotlib.pyplot as plt
 
 # Configura el puerto serial
-ser = serial.Serial('COM3', baudrate=57600)  # Reemplaza 'COMX' con el puerto serial de tu Arduino
+ser = serial.Serial('COM6', baudrate=9600)  # Reemplaza 'COMX' con el puerto serial de tu Arduino
 
 # Inicializa listas para almacenar datos
 x_data, y_data = [], []
